@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.ticker import FuncFormatter
 
+
 # Função para calcular o tempo necessário para atingir cada marco de 100k
 def calcular_investimento(aporte_mensal, taxa_anual):
     taxa_mensal = (1 + taxa_anual / 100) ** (1 / 12) - 1
@@ -17,16 +18,19 @@ def calcular_investimento(aporte_mensal, taxa_anual):
             marcos.append((meses, saldo))
     return marcos
 
+
 # Configurações iniciais
-st.title("Simulador de Crescimento Financeiro")
+st.title("Quanto tempo demora para fazer 100k?")
 st.sidebar.header("Parâmetros")
 aporte_mensal = st.sidebar.slider("Aporte Mensal (R$)", 100, 10_000, 500, step=100)
 taxa_anual = st.sidebar.slider("Taxa de Juros Anual (%)", 1, 20, 12)
+
 
 # Cálculo dos investimentos
 marcos = calcular_investimento(aporte_mensal, taxa_anual)
 meses, saldos = zip(*marcos)
 anos = np.array(meses) / 12
+
 
 # Função para formatar o eixo y
 def formatar_eixo_y(valor, _):
@@ -34,6 +38,7 @@ def formatar_eixo_y(valor, _):
         return f"{int(valor // 1_000)}k"
     else:
         return '1M'
+
 
 # Gráfico
 fig, ax = plt.subplots(figsize=(10, 6), facecolor="black")
@@ -43,6 +48,7 @@ saldo_total = [
     for m in range(meses[-1] + 1)
 ]
 ax.plot(tempo, saldo_total, label="Saldo Total", color="cyan")
+
 
 # Personalização do gráfico
 ax.set_title("Crescimento do Investimento ao Longo do Tempo", color="white")
