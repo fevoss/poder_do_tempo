@@ -30,7 +30,10 @@ anos = np.array(meses) / 12
 
 # Função para formatar o eixo y
 def formatar_eixo_y(valor, _):
-    return f"{int(valor // 1_000)}k"
+    if valor <1_000_000:
+        return f"{int(valor // 1_000)}k"
+    else:
+        return '1M'
 
 # Gráfico
 fig, ax = plt.subplots(figsize=(10, 6), facecolor="black")
@@ -46,7 +49,7 @@ ax.set_title("Crescimento do Investimento ao Longo do Tempo", color="white")
 ax.set_xlabel("Tempo (anos)", color="white")
 ax.set_ylabel("Saldo Acumulado (R$)", color="white")
 ax.set_ylim(0, 1_000_000)
-ax.grid(True, linestyle="--", alpha=0.5, color="gray", axis='x')
+# ax.grid(True, linestyle="--", alpha=0.5, color="gray", axis='x')
 ax.xaxis.label.set_color("white")
 ax.yaxis.label.set_color("white")
 ax.tick_params(axis="x", colors="white")
@@ -62,7 +65,7 @@ for ano, saldo in zip(anos, saldos):
     ax.axvline(ano, color="gray", linestyle="--", alpha=0.5)
     ax.text(
         ano,
-        saldo,  # Posiciona abaixo do eixo x
+        saldo + 50000,  # Posiciona abaixo do eixo x
         f"{round(ano - ano_anterior, 2)} anos",
         color="white",
         fontsize=10,
