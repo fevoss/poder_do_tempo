@@ -80,5 +80,11 @@ st.pyplot(fig)
 ano_anterior = 0
 st.write(f"Com um aporte mensal de **R${aporte_mensal:,.2f}** e uma taxa de juros anual de **{taxa_anual}%**, você atingirá os seguintes marcos:")
 for ano, saldo in zip(anos, saldos):
-    st.write(f"- R$ {int(saldo/100_000) * 100000:,} em mais {(ano - ano_anterior):.2f} anos.".replace(",", "."))
+    if ano_anterior != 0:
+
+        st.write(f"- Do R$ {int(saldo/100_000) * 100000:,} aos {int(saldo/100_000) * 100000 - 100000:,} em mais {(ano - ano_anterior):.2f} anos.".replace(",", "."))
+    else:
+        st.write(
+            f"- Do R$ {int(saldo / 100_000) * 100000:,} em {(ano - ano_anterior):.2f} anos.".replace(
+                ",", "."))
     ano_anterior = ano
