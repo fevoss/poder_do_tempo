@@ -48,7 +48,7 @@ ax.plot(tempo, saldo_total, label="Saldo Total", color="cyan")
 ax.set_title("Crescimento do Investimento ao Longo do Tempo", color="white")
 ax.set_xlabel("Tempo (anos)", color="white")
 ax.set_ylabel("Saldo Acumulado (R$)", color="white")
-ax.set_ylim(0, 1_000_000 * 1.2)
+ax.set_ylim(0, 1_000_000)
 ax.xaxis.label.set_color("white")
 ax.yaxis.label.set_color("white")
 ax.tick_params(axis="x", colors="white")
@@ -64,7 +64,7 @@ for ano, saldo in zip(anos, saldos):
     ax.axvline(ano, color="gray", linestyle="--", alpha=0.5)
     ax.text(
         ano,
-        saldo + 50000,  # Posiciona abaixo do eixo x
+        saldo + 20000,  # Posiciona abaixo do eixo x
         f"{round(ano - ano_anterior, 2)} anos",
         color="white",
         fontsize=10,
