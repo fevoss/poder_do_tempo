@@ -91,6 +91,6 @@ for ano, saldo in zip(anos, saldos):
                      f"{(ano - ano_anterior):.2f} anos.".replace(",", "."))
     else:
         st.write(
-            f"- Do R$ {int(saldo / 100_000) * 100000:,} em {(ano - ano_anterior):.2f} anos.".replace(
+            f"- Até {round(int(saldo / 100_000) * 100)}k em {(ano - ano_anterior):.2f} anos.".replace(
                 ",", "."))
     ano_anterior = ano
